@@ -1,29 +1,3 @@
-# oauth-demoapi-spring
-Spring OAuth demo api acting as [OAuth2 Resource Server](https://docs.spring.io/spring-security/site/docs/current/reference/html5/#oauth2resourceserver).
-
-Support:
-* Opaque Token Introspection with Basic Authentication
-* Opaque Token Introspection with Bearer Authentication
-
-# Installation
-
-Clone this repository
-```
-git clone git@github.com:https://github.com/Identicum/oauth-demoapi-spring.git
-```
-# Configure app
-
-Adjust the [aplication.yml](/src/main/resources/application.yml)
-
-# Compile & run:
-```
-mvn spring-boot:run
-```
-You can access to the API on http://hostname:8081/api/v1
-
-# OpenAPI definition
-
-```
 openapi: 3.0.1
 info:
   title: API products
@@ -34,7 +8,7 @@ info:
     url: http://identicum.com
     email: mbesozzi@identicum.com
 servers:
-- url: https://api.identicum.com/api/v1
+- url: https://api.identicum.com/v1
 tags:
 - name: product
   description: Operations about products
@@ -45,7 +19,7 @@ paths:
       - product
       summary: Get products
       security:
-        - bearerOAuth: [api.identicum.com/product:read] 
+        - bearerOAuth: [api.identicum.com/product.read] 
       responses:
         401:
           $ref: '#/components/responses/UnauthorizedError'
@@ -76,9 +50,4 @@ components:
     bearerOAuth:
       type: http
       scheme: bearer
-      bearerFormat: Opaque Access token
-```
-
-# Test API
-
-To test the API, just click [here](https://petstore.swagger.io/?url=https://github.com/Identicum/oauth-demoapi-spring/src/main/resources/v1-openapi.yml)
+      bearerFormat: Opaque Access token           
