@@ -2,6 +2,7 @@ package com.identicum.iam.identity.spring;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.identicum.iam.identity.Application;
 import com.identicum.iam.identity.oauth2.NimbusOpaqueTokenInstrospectionBearer;
 
 import org.springframework.beans.factory.annotation.Value;
@@ -14,10 +15,13 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.oauth2.server.resource.authentication.OpaqueTokenAuthenticationProvider;
 import org.springframework.security.oauth2.server.resource.introspection.NimbusOpaqueTokenIntrospector;
 import org.springframework.util.StringUtils;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @Configuration
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
+
+    private static final Logger logger = LoggerFactory.getLogger(Application.class);
 
     @Value("${app.scope.read}")
     private String scopeRead;
@@ -31,7 +35,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Value("${spring.security.oauth2.resourceserver.opaquetoken.client-id:}")
     private String clientId;
 
-     @Value("${spring.security.oauth2.resourceserver.opaquetoken.client-secret:")
+     @Value("${spring.security.oauth2.resourceserver.opaquetoken.client-secret:}")
     private String clientSecret;
 
     @Override
@@ -63,10 +67,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
       // If client_id is empty, we asume that token introspector support Bearer authentication
       // Otherwise, we use the default NimbusOpaqueTokenIntrospector that supprot Basic authentication
       if(StringUtils.isEmpty(this.clientId)) {
+        logger.debug("Creating custom NimbusOpaqueTokenInstrospectionBearer with uri: {}", instrospectUri, clientId, clientSecret);
+
         opaqueTokenAuthProvider = new OpaqueTokenAuthenticationProvider(new NimbusOpaqueTokenInstrospectionBearer(instrospectUri));
       }
       else {
-        opaqueTokenAuthProvider = new OpaqueTokenAuthenticationProvider(new NimbusOpaqueTokenIntrospector(instrospectUri,clientId, clientSecret));
+        logger.debug("Creating default NimbusOpaqueTokenIntrospector with uri: {} , client_id: {} and client_secret: {}", instrospectUri, clientId, clientSecret);
+        opaqueTokenAuthProvider = new OpaqueTokenAuthenticationProvider(new NimbusOpaqueTokenIntrospector(instrospectUri, clientId, clientSecret));
       }
       
       return request -> {
