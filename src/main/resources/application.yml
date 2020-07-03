@@ -23,6 +23,9 @@ spring:
 # custom OpaqueTokenIntrospector implementation to handle token Introspect Bearer authentication
 # Otherwise, it uses the default OpaqueTokenIntrospector that supports Basic authentication
        opaquetoken:
-         client-id: ''
-         client-secret: ''
-         introspection-uri: https://gluu.hlgv.net/oxauth/restv1/introspection
+#         client-id: ''
+#         client-secret: ''
+#         introspection-uri: https://gluu.hlgv.net/oxauth/restv1/introspection
+        client-id: oauth-demoapi-spring
+        client-secret: fb027903-2828-441b-ad1a-26d464a7b770
+        introspection-uri: http://host.docker.internal:8090/auth/realms/identicum/protocol/openid-connect/token/introspect

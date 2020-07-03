@@ -81,4 +81,4 @@ components:
 
 # Test API
 
-To test the API, just click [here](https://petstore.swagger.io/?url=https://github.com/Identicum/oauth-demoapi-spring/src/main/resources/v1-openapi.yml)
+To test the API, just click [here](https://petstore.swagger.io/?url=https://raw.githubusercontent.com/Identicum/oauth-demoapi-spring/master/src/main/resources/v1-openapi.yml)
