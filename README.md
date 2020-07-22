@@ -5,23 +5,31 @@ Support:
 * Opaque Token Introspection with Basic Authentication
 * Opaque Token Introspection with Bearer Authentication
 
-# Installation
+## Installation
 
 Clone this repository
 ```
 git clone git@github.com:https://github.com/Identicum/oauth-demoapi-spring.git
 ```
-# Configure app
+### Configure
 
 Adjust the [aplication.yml](/src/main/resources/application.yml)
 
-# Compile & run:
+### Run
+
+#### Run locally
+
 ```
 mvn spring-boot:run
 ```
 You can access to the API on http://hostname:8081/api/v1
 
-# OpenAPI definition
+#### Run as Docker container
+```
+docker build -t identicum/oauth-demoapi-spring .
+docker run -d --name oauth-demoapi-spring -p xxxx:8081 identicum/oauth-demoapi-spring
+```
+## OpenAPI definition
 
 ```
 openapi: 3.0.1
@@ -45,7 +53,7 @@ paths:
       - product
       summary: Get products
       security:
-        - bearerOAuth: [api.identicum.com/product:read] 
+        - bearerOAuth: [api.identicum.com/product:read]
       responses:
         401:
           $ref: '#/components/responses/UnauthorizedError'
@@ -79,6 +87,6 @@ components:
       bearerFormat: Opaque Access token
 ```
 
-# Test API
+## Test API
 
 To test the API, just click [here](https://petstore.swagger.io/?url=https://raw.githubusercontent.com/Identicum/oauth-demoapi-spring/master/src/main/resources/v1-openapi.yml)
