@@ -12,5 +12,5 @@ ARG BUILD_DATE=unspecified
 LABEL build_date=$BUILD_DATE
 
 WORKDIR /app
-COPY --from=builder /app/target/*.jar /app.jar
-ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/app.jar"]
+COPY --from=builder /app/target/*.jar ./app.jar
+ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","./app.jar"]
