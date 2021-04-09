@@ -9,7 +9,7 @@ Support:
 
 Clone this repository
 ```
-git clone git@github.com:https://github.com/Identicum/oauth-demoapi-spring.git
+git clone https://github.com/Identicum/oauth-demoapi-spring.git
 ```
 ### Configure
 
