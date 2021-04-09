@@ -2,33 +2,35 @@
 Spring OAuth demo api acting as [OAuth2 Resource Server](https://docs.spring.io/spring-security/site/docs/current/reference/html5/#oauth2resourceserver).
 
 Support:
-* Opaque Token Introspection with Basic Authentication
-* Opaque Token Introspection with Bearer Authentication
+- Opaque Token Introspection with Basic Authentication
+- Opaque Token Introspection with Bearer Authentication
 
-## Installation
+## Run the API
 
-Clone this repository
+### Run locally
+
+* Clone this repository
 ```
 git clone https://github.com/Identicum/oauth-demoapi-spring.git
 ```
-### Configure
-
-Adjust the [aplication.yml](/src/main/resources/application.yml)
-
-### Run
-
-#### Run locally
-
+- Adjust the [aplication.yml](/src/main/resources/application.yml)
+- Run the app
 ```
 mvn spring-boot:run
 ```
-You can access to the API on http://hostname:8081/api/v1
+- You can access to the API on http://hostname:8081/api/v1
 
-#### Run as Docker container
+### Run as Docker container
+
 ```
-docker build -t identicum/oauth-demoapi-spring .
-docker run -d --name oauth-demoapi-spring -p xxxx:8081 identicum/oauth-demoapi-spring
+docker run -d \
+	-p 8081:8081 \
+	-e DEMOAPI_CLIENT_ID=my_client_id \
+	-e DEMOAPI_CLIENT_SECRET=my_client_secret \
+	-e INTROSPECTION_ENDPOINT=https://my.idp.com/auth/realms/myrealm/protocol/openid-connect/token/introspect \
+	identicum/oauth-demoapi-spring:latest
 ```
+
 ## OpenAPI definition
 
 ```
