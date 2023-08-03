@@ -1,31 +1,6 @@
-server:
-  port: 8081
-
-logging:
-  level:
-    root: ERROR
-    org.springframework.web: DEBUG
-    org.springframework.security: DEBUG
-    org.springframework.security.oauth2: DEBUG
-    com.identicum: DEBUG
-
-app:
-  scope:
-    read: api.identicum.com/product:read
-    write: api.identicum.com/product:write
-
-# https://docs.spring.io/spring-security/site/docs/current/reference/html5/#oauth2resourceserver
 spring:
   security:
     oauth2:
-     resourceserver:
-# If client_id and client_secret is empty, Spring security uses our
-# custom OpaqueTokenIntrospector implementation to handle token Introspect Bearer authentication
-# Otherwise, it uses the default OpaqueTokenIntrospector that supports Basic authentication
-       opaquetoken:
-#         client-id: ''
-#         client-secret: ''
-#         introspection-uri: https://gluu.hlgv.net/oxauth/restv1/introspection
-        client-id: ${DEMOAPI_CLIENT_ID:api_client_id}
-        client-secret: ${DEMOAPI_CLIENT_SECRET:api_client_secret}
-        introspection-uri: ${INTROSPECTION_ENDPOINT:https://demoidp.identicum.com/auth/realms/identicum/protocol/openid-connect/token/introspect}
+      resourceserver:
+        jwt:
+          issuer-uri: ${ISSUER_URI:http://idp:8080/realms/demorealm}
