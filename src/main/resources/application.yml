@@ -1,3 +1,11 @@
+logging:
+  level:
+    root: ERROR
+    org.springframework.web: DEBUG
+    org.springframework.security: DEBUG
+    org.springframework.security.oauth2: DEBUG
+    com.identicum: DEBUG
+
 spring:
   security:
     oauth2:

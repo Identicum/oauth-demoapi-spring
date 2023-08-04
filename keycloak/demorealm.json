@@ -16,5 +16,18 @@
         "firstName": "Demo",
         "lastName": "User",
         "credentials" : [ {"type": "password", "value": "demo"} ]
-      } ]
+      } ],
+      "clients" : [ 
+        {
+            "name": "testing",
+            "clientId": "testing_client_id",
+            "secret": "testing_client_secret",
+            "standardFlowEnabled": false,
+            "implicitFlowEnabled": false,
+            "directAccessGrantsEnabled": false,
+            "serviceAccountsEnabled": true,
+            "defaultClientScopes": [ ],
+            "optionalClientScopes": [ "profile", "email"]
+        }
+    ]
 }

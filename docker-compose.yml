@@ -3,7 +3,7 @@ version: '3'
 services:
   idp:
     container_name: idp
-    image: quay.io/keycloak/keycloak:22.0
+    image: ghcr.io/identicum/keycloak:22.0
     restart: always
     ports:
       - 8080:8080
@@ -18,10 +18,10 @@ services:
     image: ghcr.io/identicum/oauth-demoapi-spring:latest
     restart: always
     ports:
-      - 8081:8081
+      - 8081:8080
     environment:
       ISSUER_URI: http://idp:8080/realms/demorealm
     depends_on:
       idp:
-        condition: service_started
+        condition: service_healthy
       

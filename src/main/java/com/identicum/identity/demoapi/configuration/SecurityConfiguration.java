@@ -8,6 +8,7 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.security.web.util.matcher.RequestMatcher;
 
+@
 public class SecurityConfiguration {
 
     @Value("${spring.security.oauth2.resourceserver.jwt.issuer-uri}")
@@ -15,7 +16,7 @@ public class SecurityConfiguration {
 
     @Bean
     public SecurityFilterChain filterChain(final HttpSecurity http) throws Exception {
-        RequestMatcher productMatcher = new AntPathRequestMatcher("/products");
+        RequestMatcher productMatcher = new AntPathRequestMatcher("/api/v1/products");
 
         return http
                 .authorizeHttpRequests(authorizeRequests ->
