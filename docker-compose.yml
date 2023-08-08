@@ -10,12 +10,13 @@ services:
     environment:
       KEYCLOAK_ADMIN: admin
       KEYCLOAK_ADMIN_PASSWORD: admin
+      KC_HOSTNAME_URL: http://idp:8080
     volumes:
       - ./keycloak/:/opt/keycloak/data/import/
     command: "start-dev --import-realm"
   demoapi:
     container_name: demoapi
-    image: ghcr.io/identicum/oauth-demoapi-spring:latest
+    build: .
     restart: always
     ports:
       - 8081:8080
