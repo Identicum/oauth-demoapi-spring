@@ -19,8 +19,8 @@
     } ],
     "clientScopes": [
         {
-        "name": "products",
-        "description": "",
+        "name": "api.identicum.com/products:read",
+        "description": "Access to products API (read only)",
         "protocol": "openid-connect"
         }
     ],
@@ -34,7 +34,7 @@
         "directAccessGrantsEnabled": false,
         "serviceAccountsEnabled": true,
         "defaultClientScopes": [ ],
-        "optionalClientScopes": [ "profile", "email", "products" ]
+        "optionalClientScopes": [ "api.identicum.com/products:read" ]
         }
     ]
 }

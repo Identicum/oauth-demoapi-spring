@@ -25,4 +25,3 @@ services:
     depends_on:
       idp:
         condition: service_healthy
-      

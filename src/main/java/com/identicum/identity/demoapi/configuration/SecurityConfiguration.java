@@ -23,7 +23,7 @@ public class SecurityConfiguration {
 
             http.authorizeHttpRequests(authorizeRequests -> {
                 authorizeRequests
-                    .requestMatchers(productMatcher).hasAuthority("SCOPE_products")
+                    .requestMatchers(productMatcher).hasAuthority("SCOPE_api.identicum.com/products:read")
                     .anyRequest().authenticated();
             }).oauth2ResourceServer(oauth2ResourceServer -> {
                 oauth2ResourceServer
@@ -40,6 +40,3 @@ public class SecurityConfiguration {
             return filterChain;
         }
 }
-
-   
-  

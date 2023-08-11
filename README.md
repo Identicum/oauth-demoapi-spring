@@ -1,16 +1,15 @@
 # oauth-demoapi-spring
-Spring OAuth demo api acting as [OAuth2 Resource Server](https://docs.spring.io/spring-security/site/docs/current/reference/html5/#oauth2resourceserver).
 
-Support:
-- JWT support for client and server authentication
+Spring OAuth demo API, acting as [OAuth2 Resource Server](https://docs.spring.io/spring-security/site/docs/current/reference/html5/#oauth2resourceserver).
+
 
 ## OpenAPI definition
 
 ```
 openapi: 3.0.1
 info:
-  title: API products
-  description: 'OAuth API products'
+  title: Products API
+  description: Products API (secured using OAuth)
   version: 1.0.0
 servers:
 - url: http://demoapi:8081/api/v1
@@ -24,7 +23,7 @@ paths:
       - product
       summary: Get products
       security:
-        - bearerOAuth: [api.identicum.com/product:read]
+        - bearerOAuth: [api.identicum.com/products:read]
       responses:
         401:
           $ref: '#/components/responses/UnauthorizedError'
