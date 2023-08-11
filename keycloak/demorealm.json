@@ -1,0 +1,40 @@
+{
+    "realm": "demorealm",
+    "enabled": true,
+    "registrationAllowed" : true,
+    "registrationEmailAsUsername" : false,
+    "verifyEmail" : true,
+    "loginWithEmailAllowed" : true,
+    "duplicateEmailsAllowed" : false,
+    "resetPasswordAllowed" : true,
+    "users" : [ {
+        "username": "demo",
+        "enabled" : true,
+        "createdTimestamp" : 1672531200000,
+        "email": "demo@identicum.com",
+        "emailVerified" : true,
+        "firstName": "Demo",
+        "lastName": "User",
+        "credentials" : [ {"type": "password", "value": "demo"} ]
+    } ],
+    "clientScopes": [
+        {
+        "name": "api.identicum.com/products:read",
+        "description": "Access to products API (read only)",
+        "protocol": "openid-connect"
+        }
+    ],
+    "clients" : [
+        {
+        "name": "testing",
+        "clientId": "testing_client_id",
+        "secret": "testing_client_secret",
+        "standardFlowEnabled": false,
+        "implicitFlowEnabled": false,
+        "directAccessGrantsEnabled": false,
+        "serviceAccountsEnabled": true,
+        "defaultClientScopes": [ ],
+        "optionalClientScopes": [ "api.identicum.com/products:read" ]
+        }
+    ]
+}
