@@ -1,7 +1,7 @@
 FROM ghcr.io/identicum/alpine-jdk25-maven:latest AS builder
 WORKDIR /app
 COPY . .
-RUN mvn install -DskipTests
+RUN mvn install
 
 
 FROM ghcr.io/identicum/alpine-jre25:latest
