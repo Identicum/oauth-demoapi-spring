@@ -6,24 +6,21 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.oauth2.jwt.JwtDecoders;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
-import org.springframework.security.web.util.matcher.RequestMatcher;
-import org.jboss.logging.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @Configuration
 public class SecurityConfiguration {
 
     @Value("${spring.security.oauth2.resourceserver.jwt.issuer-uri}")
     String issuerUri;
-    private static final Logger logger = Logger.getLogger(SecurityConfiguration.class);
+    private static final Logger logger = LoggerFactory.getLogger(SecurityConfiguration.class);
 
    @Bean
         public SecurityFilterChain filterChain(final HttpSecurity http) throws Exception {
-            RequestMatcher productMatcher = new AntPathRequestMatcher("/api/v1/products");
-
             http.authorizeHttpRequests(authorizeRequests -> {
                 authorizeRequests
-                    .requestMatchers(productMatcher).hasAuthority("SCOPE_api.identicum.com/products:read")
+                    .requestMatchers("/api/v1/products").hasAuthority("SCOPE_api.identicum.com/products:read")
                     .anyRequest().authenticated();
             }).oauth2ResourceServer(oauth2ResourceServer -> {
                 oauth2ResourceServer
@@ -31,8 +28,8 @@ public class SecurityConfiguration {
                     jwt.decoder(JwtDecoders.fromIssuerLocation(issuerUri));
                 });
             });
-            logger.debugv("Authorization configuration set.{0} ", http);
-            logger.debugv("Resource server configuration set. {0}", http);
+            logger.debug("Authorization configuration set. {}", http);
+            logger.debug("Resource server configuration set. {}", http);
     
             SecurityFilterChain filterChain = http.build();
             logger.debug("Security filter chain built.");

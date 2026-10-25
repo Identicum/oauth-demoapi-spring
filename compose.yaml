@@ -1,19 +1,20 @@
-version: '3'
+name: oauth-demoapi-spring
 
 services:
   idp:
     container_name: idp
-    image: ghcr.io/identicum/keycloak:22.0
+    image: ghcr.io/identicum/keycloak:26.8
     restart: always
+    pull_policy: always
     ports:
-      - 8080:8080
+      - 127.0.0.1:8080:8080
     environment:
-      KEYCLOAK_ADMIN: admin
-      KEYCLOAK_ADMIN_PASSWORD: admin
-      KC_HOSTNAME_URL: http://idp:8080
+      KC_BOOTSTRAP_ADMIN_USERNAME: admin
+      KC_BOOTSTRAP_ADMIN_PASSWORD: admin
     volumes:
       - ./keycloak/:/opt/keycloak/data/import/
     command: "start-dev --import-realm"
+
   demoapi:
     container_name: demoapi
     build: .

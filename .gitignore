@@ -3,3 +3,6 @@
 /.settings/
 /.vscode/
 /target/
+/.idea/
+*.iml
+.DS_Store
