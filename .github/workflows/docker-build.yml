@@ -1,0 +1,17 @@
+name: docker-build
+
+on:
+  push:
+    branches:
+    - main
+    paths:
+    - 'src/**'
+    - 'Dockerfile'
+    - 'pom.xml'
+  workflow_dispatch:
+
+jobs:
+  docker-build:
+    uses: Identicum/github-actions/.github/workflows/docker-build-autotag.yml@main
+    with:
+      image_name: ${{github.event.repository.name}}
