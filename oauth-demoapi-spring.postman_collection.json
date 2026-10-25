@@ -46,16 +46,16 @@
 					"listen": "test",
 					"script": {
 						"exec": [
-							"pm.test(\"Status code is 200.\", () => {\r",
-							"  pm.expect(pm.response.code).to.eql(200);\r",
-							"});\r",
-							"\r",
-							"const JSONResponse = JSON.parse(responseBody);\r",
-							"\r",
-							"pm.test(\"access_token is not empty\", () => {\r",
-							"  pm.expect(JSONResponse).to.have.any.keys('access_token');\r",
-							"});\r",
-							"pm.globals.set(\"test_access_token\", JSONResponse.access_token)\r",
+							"pm.test(\"Status code is 200.\", () => {",
+							"  pm.expect(pm.response.code).to.eql(200);",
+							"});",
+							"",
+							"const JSONResponse = JSON.parse(responseBody);",
+							"",
+							"pm.test(\"access_token is not empty\", () => {",
+							"  pm.expect(JSONResponse).to.have.any.keys('access_token');",
+							"});",
+							"pm.globals.set(\"test_access_token\", JSONResponse.access_token)",
 							""
 						],
 						"type": "text/javascript"
@@ -210,16 +210,16 @@
 					"listen": "test",
 					"script": {
 						"exec": [
-							"pm.test(\"Status code is 200.\", () => {\r",
-							"  pm.expect(pm.response.code).to.eql(200);\r",
-							"});\r",
-							"\r",
-							"const JSONResponse = JSON.parse(responseBody);\r",
-							"\r",
-							"pm.test(\"access_token is not empty\", () => {\r",
-							"  pm.expect(JSONResponse).to.have.any.keys('access_token');\r",
-							"});\r",
-							"pm.globals.set(\"test_access_token\", JSONResponse.access_token)\r",
+							"pm.test(\"Status code is 200.\", () => {",
+							"  pm.expect(pm.response.code).to.eql(200);",
+							"});",
+							"",
+							"const JSONResponse = JSON.parse(responseBody);",
+							"",
+							"pm.test(\"access_token is not empty\", () => {",
+							"  pm.expect(JSONResponse).to.have.any.keys('access_token');",
+							"});",
+							"pm.globals.set(\"test_access_token\", JSONResponse.access_token)",
 							""
 						],
 						"type": "text/javascript"
